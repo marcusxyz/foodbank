@@ -32,6 +32,6 @@ class RegisterController extends Controller
         $register->password = Hash::make($request->input('password'));
         $register->save();
 
-        return back('/');
+        return back();
     }
 }
