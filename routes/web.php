@@ -18,12 +18,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'login')->name('login');
-Route::post('login', LoginController::class)->middleware('guest');
+// views
+Route::view('login', 'login')->name('login')->middleware('guest');
+Route::view('/', 'dashboard')->name('dashboard');
 Route::view('register', 'register')->name('register')->middleware('guest');
-Route::post('register', RegisterController::class)->middleware('guest');
-Route::get('logout', LogoutController::class)->middleware('auth');
+
+// get
 Route::get('dashboard', DashboardController::class);
+Route::get('logout', LogoutController::class)->middleware('auth');
+
+//post
+Route::post('login', LoginController::class)->middleware('guest');
+Route::post('register', RegisterController::class)->middleware('guest');
 Route::post('recipes', CreateRecipeController::class)->middleware('auth');
 
 // Route::patch('recipes{recipe}/like', LikeRecipeController::class);
