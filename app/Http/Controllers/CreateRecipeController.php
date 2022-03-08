@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Recipe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CreateRecipeController extends Controller
 {
@@ -14,6 +16,19 @@ class CreateRecipeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|string',
+            'description' => 'required|text',
+            'ingredients' => 'required|text',
+            'recipe_steps' => 'required|text',
+        ]);
+
+        $recipe = new Recipe();
+        $recipe->user_id = Auth::id();
+        $recipe->title = $request->input('title');
+        $recipe->description = $request->input('description');
+        $recipe->ingredients = $request->input('ingredients');
+        $recipe->recipe_steps = $request->input('recipe_steps');
+        $recipe->like_id = Auth::id(); // We might change this later
     }
 }
