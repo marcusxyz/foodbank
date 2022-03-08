@@ -5,17 +5,14 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ExampleTest extends TestCase
+class LoginTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function test_the_application_returns_a_successful_response()
+    use RefreshDatabase;
+
+    public function test_view_login_form()
     {
         $response = $this->get('/');
-
+        $response->assertSeeText('Email');
         $response->assertStatus(200);
     }
 }
