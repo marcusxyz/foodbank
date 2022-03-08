@@ -30,5 +30,8 @@ class CreateRecipeController extends Controller
         $recipe->ingredients = $request->input('ingredients');
         $recipe->recipe_steps = $request->input('recipe_steps');
         $recipe->like_id = Auth::id(); // We might change this later
+        $recipe->save();
+
+        return back();
     }
 }

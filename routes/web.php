@@ -17,11 +17,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'index')->name('login');
+Route::view('/', 'login')->name('login');
+Route::view('register', 'register')->name('register');
+// Route::get('register', RegisterController::class, 'create')->middleware('guest');
+// Route::post('register', RegisterController::class, 'store')->middleware('guest');
 Route::post('register', RegisterController::class)->middleware('guest');
 Route::post('login', LoginController::class)->middleware('guest');
 Route::get('logout', LogoutController::class)->middleware('auth');
 Route::post('recipes', CreateRecipeController::class)->middleware('auth');
-Route::patch('recipes{recipe}/like', LikeRecipeController::class)->middleware('auth');
-Route::post('recipes{recipe}/delete', DeleteRecipeController::class)->middleware('auth'); // Maybe use Route::destroy
-Route::post('recipes{recipe}/update', UpdateRecipeController::class)->middleware('auth');
+// Route::patch('recipes{recipe}/like', LikeRecipeController::class);
+// Route::post('recipes{recipe}/delete', DeleteRecipeController::class)->middleware('auth'); // Maybe use Route::destroy
+// Route::post('recipes{recipe}/update', UpdateRecipeController::class)->middleware('auth');
