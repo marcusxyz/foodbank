@@ -18,10 +18,10 @@ class RegisterController extends Controller
 
     public function __invoke(Request $request)
     {
-        // Here we validate input
+        // Here we validate input. Which also generates relevant error messages
         $this->validate($request, [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255',
+            'email' => 'required|unique:users|email:rfc,dns|max:255',
             'password' => 'required|min:7|max:255',
         ]);
 

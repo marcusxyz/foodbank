@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 // views
-Route::view('login', 'login')->name('login')->middleware('guest');
 Route::view('/', 'dashboard')->name('dashboard');
+Route::view('login', 'login')->name('login')->middleware('guest');
 Route::view('register', 'register')->name('register')->middleware('guest');
 
 // get
