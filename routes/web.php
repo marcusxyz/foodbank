@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CreateRecipeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
@@ -22,15 +23,18 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'dashboard')->name('dashboard');
 Route::view('login', 'login')->name('login')->middleware('guest');
 Route::view('register', 'register')->name('register')->middleware('guest');
+Route::view('create-recipe', 'create-recipe')->name('create-recipe')->middleware('auth');
+// Route::view('profile', 'profile')->name('profile')->middleware('auth');
 
 // get
 Route::get('dashboard', DashboardController::class);
 Route::get('logout', LogoutController::class)->middleware('auth');
+Route::get('profile', ProfileController::class);
 
 //post
 Route::post('login', LoginController::class)->middleware('guest');
 Route::post('register', RegisterController::class)->middleware('guest');
-Route::post('recipes', CreateRecipeController::class)->middleware('auth');
+Route::post('create-recipe', CreateRecipeController::class)->middleware('auth');
 
 // Route::patch('recipes{recipe}/like', LikeRecipeController::class);
 // Route::post('recipes{recipe}/delete', DeleteRecipeController::class)->middleware('auth'); // Maybe use Route::destroy

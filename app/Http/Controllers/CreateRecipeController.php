@@ -18,9 +18,9 @@ class CreateRecipeController extends Controller
     {
         $this->validate($request, [
             'title' => 'required|string',
-            'description' => 'required|text',
-            'ingredients' => 'required|text',
-            'recipe_steps' => 'required|text',
+            'description' => 'required|string',
+            'ingredients' => 'required|string',
+            'recipe_steps' => 'required|string',
         ]);
 
         $recipe = new Recipe();

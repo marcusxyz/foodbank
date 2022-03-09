@@ -4,5 +4,6 @@
 <p>Or register here <a href="/register">here</a>.</p>
 @else
 <h2>Hello, {{ $user->name }}!</h2>
+<p>Get to your profile <a href="/profile">here</a>.</p>
 <p>You can logout <a href="/logout">here</a>.</p>
 @endif
