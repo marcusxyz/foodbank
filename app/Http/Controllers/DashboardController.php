@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,9 +17,11 @@ class DashboardController extends Controller
     public function __invoke(Request $request)
     {
         $user = Auth::user();
+        $recipes = Recipe::get();
 
         return view('dashboard', [
-            'user' => $user
+            'user' => $user,
+            'recipes' => $recipes,
         ]);
     }
 }

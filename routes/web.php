@@ -30,7 +30,7 @@ Route::view('create-recipe', 'create-recipe')->name('create-recipe')->middleware
 Route::get('edit-recipe', ShowEditRecipeController::class)->name('edit.recipe')->middleware('auth');
 Route::patch('edit-recipe', UpdateRecipeController::class)->name('update.recipe')->middleware('auth');
 // get
-Route::get('dashboard', DashboardController::class);
+Route::get('dashboard', DashboardController::class)->name('dashboard');
 Route::get('logout', LogoutController::class)->middleware('auth');
 Route::get('profile', ProfileController::class);
 

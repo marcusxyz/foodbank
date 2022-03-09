@@ -1,9 +1,22 @@
 @if (Auth::guest())
-<h2>Welcome to foodbank!</h2>
+<h1>Welcome to foodbank!</h1>
 <p>You can login <a href="/login">here</a>.</p>
 <p>Or register here <a href="/register">here</a>.</p>
 @else
-<h2>Hello, {{ $user->name }}!</h2>
-<p>Get to your profile <a href="/profile">here</a>.</p>
-<p>You can logout <a href="/logout">here</a>.</p>
+<h1>Welcome to foodbank, {{ $user->name }}!</h1>
+<div style="width: 100%; display: flex; justify-content: space-between;">
+    <p>Go to your profile <a href="/profile">here</a>.</p>
+    <p>You can logout <a href="/logout">here</a>.</p>
+</div>
 @endif
+
+<h2>All recipes ({{$recipes->count()}}) </h2>
+<div>
+    @foreach ($recipes as $recipe)
+        <div style="border: 1px solid black; margin-bottom: 24px; padding: 16px;">
+            <h2>{{ $recipe->title }}</h2>
+            <p>{{ $recipe->description }}</p>
+            <a href="#">View recipe</a>
+        </div>
+    @endforeach
+</div>
