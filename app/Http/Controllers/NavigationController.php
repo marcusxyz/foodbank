@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class DashboardController extends Controller
+class NavigationController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -17,7 +16,7 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
-        return view('dashboard', [
+        return view('navigation', [
             'user' => $user
         ]);
     }
