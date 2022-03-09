@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CreateRecipeController;
 use App\Http\Controllers\ShowEditRecipeController;
 use App\Http\Controllers\UpdateRecipeController;
+use App\Http\Controllers\DeleteRecipeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -40,5 +41,5 @@ Route::post('register', RegisterController::class)->middleware('guest');
 Route::post('create-recipe', CreateRecipeController::class)->middleware('auth');
 
 // Route::patch('recipes{recipe}/like', LikeRecipeController::class);
-// Route::post('recipes{recipe}/delete', DeleteRecipeController::class)->middleware('auth'); // Maybe use Route::destroy
+Route::delete('recipes{recipe}/delete', DeleteRecipeController::class)->middleware('auth'); // Maybe use Route::destroy
 // Route::post('recipes{recipe}/update', UpdateRecipeController::class)->middleware('auth');
