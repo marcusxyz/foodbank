@@ -1,22 +1,5 @@
-@extends('layouts.app')
+@extends('layouts.navigation')
 
-<!-- <form action="register" method="post">
-    @csrf
-    <div>
-        <label for="name">Name</label>
-        <input name="name" id="name" type="name" />
-    </div>
-    <div>
-        <label for="email">Email</label>
-        <input name="email" id="email" type="email" />
-    </div>
-    <div>
-        <label for="password">Password</label>
-        <input name="password" id="password" type="password" />
-    </div>
-    <button type="submit">Sign up</button>
-</form>
-<a href="login">Log in here</a> -->
 
 @section('content')
 <div class="container">
@@ -26,7 +9,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <!-- Name input -->
@@ -36,7 +19,7 @@
                             <div class="col-md-6">
                                 <input id="name" type="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autofocus>
 
-                                @error('email')
+                                @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

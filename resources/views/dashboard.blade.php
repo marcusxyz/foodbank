@@ -1,4 +1,5 @@
-@extends('layouts.app')
+@extends('layouts.navigation')
+@include('errors')
 
 @section('content')
 <main role="main">

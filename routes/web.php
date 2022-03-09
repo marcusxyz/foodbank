@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 // views
 Route::view('/', 'dashboard')->name('dashboard');
-Route::view('login', 'login')->name('login')->middleware('guest');
+
 Route::view('register', 'register')->name('register')->middleware('guest');
 
 // get
@@ -29,7 +29,7 @@ Route::get('dashboard', DashboardController::class);
 Route::get('logout', LogoutController::class)->middleware('auth');
 
 //post
-Route::post('login', LoginController::class)->middleware('guest');
+
 Route::post('register', RegisterController::class)->middleware('guest');
 Route::post('recipes', CreateRecipeController::class)->middleware('auth');
 
