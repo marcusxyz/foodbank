@@ -20,7 +20,5 @@ class ProfileController extends Controller
         return view('profile', [
             'user' => $user
         ]);
-
-
     }
 }
