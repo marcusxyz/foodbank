@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CreateRecipeController;
+use App\Http\Controllers\ShowEditRecipeController;
+use App\Http\Controllers\UpdateRecipeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -25,7 +27,8 @@ Route::view('login', 'login')->name('login')->middleware('guest');
 Route::view('register', 'register')->name('register')->middleware('guest');
 Route::view('create-recipe', 'create-recipe')->name('create-recipe')->middleware('auth');
 // Route::view('profile', 'profile')->name('profile')->middleware('auth');
-
+Route::get('edit-recipe', ShowEditRecipeController::class)->name('edit.recipe')->middleware('auth');
+Route::patch('edit-recipe', UpdateRecipeController::class)->name('update.recipe')->middleware('auth');
 // get
 Route::get('dashboard', DashboardController::class);
 Route::get('logout', LogoutController::class)->middleware('auth');

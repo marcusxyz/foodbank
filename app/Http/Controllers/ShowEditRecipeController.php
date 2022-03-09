@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class ProfileController extends Controller
+class ShowEditRecipeController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -15,15 +14,6 @@ class ProfileController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $user = Auth::user();
-
-        return view('profile', [
-            'user' => $user
-        ]);
-    }
-
-    public function index()
-    {
-
+        //
     }
 }

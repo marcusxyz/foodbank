@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+
     use HasApiTokens;
     use HasFactory;
     use Notifiable;
@@ -25,8 +26,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function recipe()
+    public function recipes()
     {
-        return $this->hasMany(Recipes::class);
+        return $this->hasMany(Recipe::class);
+
+        User::with('recipes')->get();
     }
 }
