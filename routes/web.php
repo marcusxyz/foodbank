@@ -40,5 +40,5 @@ Route::post('register', RegisterController::class)->middleware('guest');
 Route::post('create-recipe', CreateRecipeController::class)->middleware('auth');
 
 // Route::patch('recipes{recipe}/like', LikeRecipeController::class);
-// Route::post('recipes{recipe}/delete', DeleteRecipeController::class)->middleware('auth'); // Maybe use Route::destroy
+Route::delete('recipes{recipe}/delete', DeleteRecipeController::class)->middleware('auth'); // Maybe use Route::destroy
 // Route::post('recipes{recipe}/update', UpdateRecipeController::class)->middleware('auth');

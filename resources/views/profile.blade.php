@@ -1,4 +1,3 @@
-<h1>Hello, {{ $user->name }}!</h1>
 <p>Create your recipe<a href="{{ route('edit.recipe') }}"> here</a>.</p>
 
 <p>You currently have {{$user->recipes->count()}} recipes</p>
@@ -11,3 +10,4 @@
         </div>
     @endforeach
 </div>
+
