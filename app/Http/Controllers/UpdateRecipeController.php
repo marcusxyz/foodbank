@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Recipe;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class UpdateRecipeController extends Controller
 {
@@ -23,7 +22,7 @@ class UpdateRecipeController extends Controller
         $recipe->ingredients = $request->input('ingredients');
         $recipe->recipe_steps = $request->input('recipe_steps');
 
-        $recipe->save();
+        $recipe->update();
 
         return back();
 

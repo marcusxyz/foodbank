@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
+use App\Models\Recipe;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,24 +23,37 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// views
 // Route::view('url', 'file-name')->name('url for route in laravel');
 
-Route::view('login', 'login')->name('login')->middleware('guest');
-Route::view('register', 'register')->name('register')->middleware('guest');
-Route::view('recipes/create', 'recipes.create')->name('recipes.create')->middleware('auth');
-Route::patch('recipes/update', UpdateRecipeController::class)->name('recipes.update')->middleware('auth');
-// get
+// Index
 Route::get('/', DashboardController::class)->name('dashboard');
-Route::get('logout', LogoutController::class)->name('logout')->middleware('auth');
-Route::get('user/profile', ProfileController::class)->name('user.profile')->middleware('auth');
-Route::get('recipes/update', ShowEditRecipeController::class)->name('edit.recipe')->middleware('auth');
 
-//post
-Route::post('login', LoginController::class)->middleware('guest');
+// Register
+Route::view('register', 'register')->name('register')->middleware('guest');
 Route::post('register', RegisterController::class)->middleware('guest');
-Route::post('recipes/create', CreateRecipeController::class)->middleware('auth');
 
-// Route::patch('recipes{recipe}/like', LikeRecipeController::class);
+// Login/Logout
+Route::view('login', 'login')->name('login')->middleware('guest');
+Route::post('login', LoginController::class)->middleware('guest');
+Route::get('logout', LogoutController::class)->name('logout')->middleware('auth');
+
+// Profile
+Route::get('user/profile', ProfileController::class)->name('user.profile')->middleware('auth');
+
+// Recipes
+Route::view('recipes/create', 'recipes.create')->name('recipes.create')->middleware('auth');
+Route::post('recipes/create', CreateRecipeController::class)->middleware('auth');
+Route::get('recipes/update', ShowEditRecipeController::class)->name('recipes.update')->middleware('auth');
+// Route::patch('recipes/update{id}', UpdateRecipeController::class)->name('recipes.patch')->middleware('auth');
 Route::delete('delete/{id}', DeleteRecipeController::class)->name('recipes.delete')->middleware('auth');
 
+Route::get('user/update/{recipes}', function (Recipe $recipes) {
+    return view('/recipes/update', [
+        'recipes' => $recipes
+    ]);
+});
+
+Route::post('recipes.patch/{recipes}', [
+    'as' => 'recipes.patch',
+    'uses' => UpdateRecipeController::class
+]);

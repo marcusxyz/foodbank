@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Recipe;
 use Illuminate\Http\Request;
 
 class ShowEditRecipeController extends Controller
@@ -14,6 +15,6 @@ class ShowEditRecipeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        //
+        return view('recipes/update');
     }
 }

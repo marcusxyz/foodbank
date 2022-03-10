@@ -1,33 +1,21 @@
-<div>
-    <label for="select-recipe">Choose a recipe to edit: </label>
-    <select name="recipe" id="select-recipe">
-        @foreach ($recipes as $recipe)
-            <option value="{{$recipe->id}}" @if($post->recipe->contains($recipe->id)) selected @endif>{{ $recipe->title }}</option>
-       @endforeach
-    </select>
-</div>
+@include('errors')
+<p>Back to <a href="{{ route('user.profile') }}">Profile</a></p>
+<h1>Update recipe</h1>
 
-<form action="{{ route('update.recipe') }}" method="POST">
+<form action="{{ route('recipes.patch', $recipes) }}" method="POST">
     @csrf
-    @method('PATCH')
     <label for="title">Title</label>
-    <input name="title" id="title" type="text" />
+    <input name="title" id="title" type="text" value="{{$recipes->title}}" />
 
     <label for="description">Description</label>
-    <textarea name="description" id="description" cols="30" rows="10"></textarea>
+    <textarea name="description" id="description" cols="30" rows="10">{{$recipes->description}}</textarea>
 
     <label for="ingredients">Ingredients</label>
-    <textarea name="ingredients" id="ingredients" cols="30" rows="10"></textarea>
+    <textarea name="ingredients" id="ingredients" cols="30" rows="10">{{$recipes->ingredients}}</textarea>
 
     <label for="recipe_steps">Recipe Steps</label>
-    <textarea name="recipe_steps" id="recipe_steps" cols="30" rows="10"></textarea>
+    <textarea name="recipe_steps" id="recipe_steps" cols="30" rows="10">{{$recipes->recipe_steps}}</textarea>
 
         <button type="submit">Update Recipe</button>
     </form>
-</form>
-
-<form action="{{ route('delete.recipe', $recipe) }}" method="post">
-    @csrf
-    @method('DELETE')
-    <button type="submit">Delete recipe</button>
 </form>
