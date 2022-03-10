@@ -29,7 +29,7 @@ class CreateRecipeController extends Controller
         $recipe->description = $request->input('description');
         $recipe->ingredients = $request->input('ingredients');
         $recipe->recipe_steps = $request->input('recipe_steps');
-        $recipe->like_id = Auth::id(); // We might change this later
+        $recipe->like_id = Auth::id();
         $recipe->save();
 
         return redirect('user/profile')->with('success', 'New recipe created!');;
