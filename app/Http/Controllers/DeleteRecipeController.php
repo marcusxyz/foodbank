@@ -21,4 +21,3 @@ class DeleteRecipeController extends Controller
         return back();
     }
 }
-

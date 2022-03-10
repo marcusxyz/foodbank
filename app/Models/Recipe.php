@@ -16,5 +16,3 @@ class Recipe extends Model
         'recipe_steps',
     ];
 }
-
-
