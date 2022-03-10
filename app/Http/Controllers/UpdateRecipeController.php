@@ -25,6 +25,5 @@ class UpdateRecipeController extends Controller
         $recipe->update();
 
         return back();
-
     }
 }

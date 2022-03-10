@@ -32,6 +32,6 @@ class CreateRecipeController extends Controller
         $recipe->like_id = Auth::id(); // We might change this later
         $recipe->save();
 
-        return back();
+        return redirect('user/profile')->with('success', 'New recipe created!');;
     }
 }
