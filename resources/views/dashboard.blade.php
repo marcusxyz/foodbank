@@ -1,12 +1,12 @@
 @if (Auth::guest())
 <h1>Welcome to foodbank!</h1>
-<p>You can login <a href="/login">here</a>.</p>
-<p>Or register here <a href="/register">here</a>.</p>
+<p>You can login <a href="{{route('login')}}">here</a>.</p>
+<p>Or register here <a href="{{route('register')}}">here</a>.</p>
 @else
 <h1>Welcome to foodbank, {{ $user->name }}!</h1>
 <div style="width: 100%; display: flex; justify-content: space-between;">
-    <p>Go to your profile <a href="/profile">here</a>.</p>
-    <p>You can logout <a href="/logout">here</a>.</p>
+    <p>Go to your profile <a href="{{route('user.profile')}}">here</a>.</p>
+    <p>You can logout <a href="{{route('logout')}}">here</a>.</p>
 </div>
 @endif
 

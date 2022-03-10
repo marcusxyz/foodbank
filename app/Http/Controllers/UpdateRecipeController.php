@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,8 +14,18 @@ class UpdateRecipeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, $id)
     {
-        //
+        $recipe = Recipe::find($id);
+
+        $recipe->title = $request->input('title');
+        $recipe->description = $request->input('description');
+        $recipe->ingredients = $request->input('ingredients');
+        $recipe->recipe_steps = $request->input('recipe_steps');
+
+        $recipe->save();
+
+        return back();
+
     }
 }

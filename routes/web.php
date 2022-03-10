@@ -23,23 +23,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 // views
-Route::view('/', 'dashboard')->name('dashboard');
+// Route::view('url', 'file-name')->name('url for route in laravel');
+
 Route::view('login', 'login')->name('login')->middleware('guest');
 Route::view('register', 'register')->name('register')->middleware('guest');
-Route::view('create-recipe', 'create-recipe')->name('create-recipe')->middleware('auth');
-// Route::view('profile', 'profile')->name('profile')->middleware('auth');
-Route::get('edit-recipe', ShowEditRecipeController::class)->name('edit.recipe')->middleware('auth');
-Route::patch('edit-recipe', UpdateRecipeController::class)->name('update.recipe')->middleware('auth');
+Route::view('recipes/create', 'recipes.create')->name('recipes.create')->middleware('auth');
+Route::patch('recipes/update', UpdateRecipeController::class)->name('recipes.update')->middleware('auth');
 // get
-Route::get('dashboard', DashboardController::class)->name('dashboard');
-Route::get('logout', LogoutController::class)->middleware('auth');
-Route::get('profile', ProfileController::class);
+Route::get('/', DashboardController::class)->name('dashboard');
+Route::get('logout', LogoutController::class)->name('logout')->middleware('auth');
+Route::get('user/profile', ProfileController::class)->name('user.profile')->middleware('auth');
+Route::get('recipes/update', ShowEditRecipeController::class)->name('edit.recipe')->middleware('auth');
 
 //post
 Route::post('login', LoginController::class)->middleware('guest');
 Route::post('register', RegisterController::class)->middleware('guest');
-Route::post('create-recipe', CreateRecipeController::class)->middleware('auth');
+Route::post('recipes/create', CreateRecipeController::class)->middleware('auth');
 
 // Route::patch('recipes{recipe}/like', LikeRecipeController::class);
-Route::delete('delete/{id}', DeleteRecipeController::class)->middleware('auth'); // Maybe use Route::destroy
-// Route::post('recipes{recipe}/update', UpdateRecipeController::class)->middleware('auth');
+Route::delete('delete/{id}', DeleteRecipeController::class)->name('recipes.delete')->middleware('auth');
+

@@ -1,7 +1,7 @@
 @include('errors')
 <h1>Create new recipe</h1>
 
-<form action="create-recipe" method="post">
+<form action="{{route('recipes.create')}}" method="post">
     @csrf
     <label for="title">Title</label>
 

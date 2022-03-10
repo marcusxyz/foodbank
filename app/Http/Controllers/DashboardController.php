@@ -16,12 +16,12 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $user = Auth::user();
         $recipes = Recipe::get();
+        $user = Auth::user();
 
         return view('dashboard', [
-            'user' => $user,
             'recipes' => $recipes,
+            'user' => $user,
         ]);
     }
 }

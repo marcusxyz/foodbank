@@ -17,7 +17,7 @@ class DeleteRecipeController extends Controller
      */
     public function __invoke($id)
     {
-        DB::delete('delete from recipes where id = ?', [$id]);
-        return back();
+        Recipe::find($id)->delete();
+        return redirect()->back();
     }
 }

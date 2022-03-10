@@ -19,4 +19,4 @@
     </div>
     <button type="submit">Sign up</button>
 </form>
-<a href="login">Log in here</a>
+<a href="{{ route('login') }}">Log in here</a>
