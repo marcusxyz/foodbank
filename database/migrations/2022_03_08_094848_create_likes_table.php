@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('recipe_id');
             $table->integer('user_id');
-            $table->boolean('like');
+            $table->integer('value');
             $table->timestamps();
         });
     }
