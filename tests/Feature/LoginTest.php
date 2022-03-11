@@ -11,7 +11,7 @@ class LoginTest extends TestCase
 
     public function test_view_login_form()
     {
-        $response = $this->get('/');
+        $response = $this->get('login');
         $response->assertSeeText('Email');
         $response->assertStatus(200);
     }
