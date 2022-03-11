@@ -16,8 +16,8 @@ class DashboardTest extends TestCase
         // $user->name = 'Emma';
         // $user->save();
 
-        $response = $this->get('dashboard');
-        $response->assertSeeText('Hello');
+        $response = $this->get('/');
+        $response->assertSeeText('Welcome');
         $response->assertStatus(200);
     }
 }
