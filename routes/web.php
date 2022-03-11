@@ -44,6 +44,11 @@ Route::get('user/profile', ProfileController::class)->name('user.profile')->midd
 Route::view('recipes/create', 'recipes.create')->name('recipes.create')->middleware('auth');
 Route::post('recipes/create', CreateRecipeController::class)->middleware('auth');
 Route::delete('delete/{id}', DeleteRecipeController::class)->name('recipes.delete')->middleware('auth');
+Route::get('view/recipe:{recipes}', function (Recipe $recipes) {
+    return view('/recipes/view', [
+        'recipes' => $recipes
+    ]);
+});
 
 Route::get('user/update/recipe:{recipes}', function (Recipe $recipes) {
     return view('/recipes/update', [

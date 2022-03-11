@@ -12,6 +12,7 @@
     @foreach ($user->recipes as $recipe)
         <div style="border: 1px solid black; margin-bottom: 24px; padding: 16px;">
             <h2>{{ $recipe->title }}</h2>
+            <a href="/view/recipe:{{ $recipe->id }}">View recipe</a>
             <a href="update/recipe:{{ $recipe->id }}">Update recipe</a>
             <form action="{{ route('recipes.delete', $recipe->id) }}" method="post">
                 @method('DELETE')
