@@ -15,6 +15,6 @@ class DeleteRecipeController extends Controller
     public function __invoke($id)
     {
         Recipe::find($id)->delete();
-        return redirect()->back();
+        return redirect('user/profile')->with('success', 'Recipe has been deleted!');
     }
 }

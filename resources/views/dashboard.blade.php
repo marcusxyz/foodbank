@@ -1,4 +1,7 @@
 @if (Auth::guest())
+@if ($success = session('success'))
+  <p style="color: green;">{{ $success }}</p>
+@endif
 <h1>Welcome to foodbank!</h1>
 <p>You can login <a href="{{route('login')}}">here</a>.</p>
 <p>Or register here <a href="{{route('register')}}">here</a>.</p>

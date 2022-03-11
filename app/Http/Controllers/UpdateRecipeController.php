@@ -24,6 +24,6 @@ class UpdateRecipeController extends Controller
 
         $recipe->update();
 
-        return back();
+        return redirect('user/profile')->with('success', 'Recipe has been updated!');
     }
 }
