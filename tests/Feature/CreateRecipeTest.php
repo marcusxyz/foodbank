@@ -24,7 +24,6 @@ class CreateRecipeTest extends TestCase
         $response = $this->actingAs($user)
             ->get('recipes/create');
         //why get and not view?
-
         $response->assertStatus(200);
     }
 
@@ -36,10 +35,15 @@ class CreateRecipeTest extends TestCase
         $user->password = Hash::make('123');
         $user->save();
 
-        $response = $this->actingAs($user)
-            ->post('recipes', [
-                'title' => 'mos'
-            ]);
-        $this->assertDatabaseHas('recipes', ['title' => 'mos']);
+        $attributes = [
+            'title' => 'mos',
+            'description' => 'mos',
+            'ingredients' => 'mos',
+            'recipe_steps' => 'mos',
+        ];
+
+        $this->from('/')->followingRedirects()->actingAs($user)->post('recipes/upload', $attributes);
+
+        $this->assertDatabaseHas('recipes', $attributes);
     }
 }
