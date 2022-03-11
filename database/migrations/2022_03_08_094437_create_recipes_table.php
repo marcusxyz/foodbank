@@ -20,7 +20,6 @@ return new class extends Migration
             $table->text('description');
             $table->text('ingredients');
             $table->text('recipe_steps');
-            $table->integer('like_id');
             $table->timestamps();
         });
     }
