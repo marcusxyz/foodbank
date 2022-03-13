@@ -1,3 +1,4 @@
+<p>Back to <a href="{{ route('user.profile') }}">Profile</a></p>
 <h1>{{$recipes->title}}</h1>
 
 <h3>Description</h3>

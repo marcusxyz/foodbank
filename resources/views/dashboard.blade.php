@@ -19,7 +19,8 @@
         <div style="border: 1px solid black; margin-bottom: 24px; padding: 16px;">
             <h2>{{ $recipe->title }}</h2>
             <p>{{ $recipe->description }}</p>
-            <a href="#">View recipe</a>
+            <a href="/view/recipe:{{ $recipe->id }}">View recipe</a>
+            <p>By: {{ $recipe->user->name }}</p>
         </div>
     @endforeach
 </div>

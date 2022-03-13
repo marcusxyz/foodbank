@@ -15,4 +15,14 @@ class Recipe extends Model
         'ingredients',
         'recipe_steps',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    // public function user()
+    // {
+    //     return $this->hasOne(User::class);
+    // }
 }
