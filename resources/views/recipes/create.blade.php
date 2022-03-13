@@ -2,7 +2,7 @@
 <p>Back to <a href="{{ route('user.profile') }}">Profile</a></p>
 <h1>Create new recipe</h1>
 
-<form action="{{route('recipes.create')}}" method="post">
+<form action="{{route('recipes.upload')}}" method="post">
     @csrf
     <label for="title">Title</label>
 
