@@ -17,7 +17,7 @@
             <form action="{{ route('recipes.delete', $recipe->id) }}" method="post" style="margin-top: 16px;">
                 @method('DELETE')
                 @csrf
-                <button type="submit">Delete</button>
+                <button type="submit" onclick="return confirm('Are you sure you what to delete your recipe?')" >Delete</button>
             </form>
         </div>
     @endforeach
