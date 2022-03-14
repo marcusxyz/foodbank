@@ -1,4 +1,8 @@
+@if (Auth::guest())
+<p>Back to <a href="{{ route('dashboard') }}">Dashboard</a></p>
+@else
 <p>Back to <a href="{{ route('user.profile') }}">Profile</a></p>
+@endif
 <h1>{{$recipes->title}}</h1>
 
 <h3>Description</h3>
