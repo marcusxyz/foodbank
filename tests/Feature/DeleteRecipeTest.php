@@ -9,22 +9,29 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
-class RecipeTest extends TestCase
+class DeleteRecipeTest extends TestCase
 {
     use RefreshDatabase;
 
     public function test_delete_recipe()
     {
+        // Create new user manually
         $user = new User();
         $user->name = 'Mr Robot';
         $user->email = 'example@yrgo.se';
         $user->password = Hash::make('123');
         $user->save();
 
-        $request = $this
-            ->actingAs($user)
-            ->delete("recipes/1");
+        // Generate dummy data for recipe
+        $recipe = Recipe::factory()->create();
 
-        $this->assertDatabaseMissing('recipes', ['id' => 1]);
+        $request = $this
+            ->followingRedirects()
+            ->actingAs($user)
+            ->delete("/delete/{$recipe->id}");
+
+        $this->assertDatabaseMissing('recipes', ['id'=> $recipe->id]);
+        $request->assertSeeText("Recipe has been deleted!");
+        $request->assertStatus(200);
     }
 }
