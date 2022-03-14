@@ -15,7 +15,7 @@ class DashboardTest extends TestCase
     {
 
         $response = $this->get('/');
-        $response->assertSeeText('Welcome');
+        $response->assertSeeText('Welcome to recipe bank!');
         $response->assertStatus(200);
     }
     public function test_view_dashboard_as_user()

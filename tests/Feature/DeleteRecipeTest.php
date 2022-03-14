@@ -14,24 +14,24 @@ class DeleteRecipeTest extends TestCase
     use RefreshDatabase;
 
     public function test_delete_recipe()
-    {
-        // Create new user manually
-        $user = new User();
-        $user->name = 'Mr Robot';
-        $user->email = 'example@yrgo.se';
-        $user->password = Hash::make('123');
-        $user->save();
+   {
+       // Create new user manually
+       $user = new User();
+       $user->name = 'Mr Robot';
+       $user->email = 'example@yrgo.se';
+       $user->password = Hash::make('123');
+       $user->save();
 
-        // Generate dummy data for recipe
-        $recipe = Recipe::factory()->create();
+       // Generate dummy data for recipe
+       $recipe = Recipe::factory()->create();
 
-        $request = $this
-            ->followingRedirects()
-            ->actingAs($user)
-            ->delete("/delete/{$recipe->id}");
+       $request = $this
+           ->followingRedirects()
+           ->actingAs($user)
+           ->delete("recipes/{$recipe->id}/delete");
 
-        $this->assertDatabaseMissing('recipes', ['id'=> $recipe->id]);
-        $request->assertSeeText("Recipe has been deleted!");
-        $request->assertStatus(200);
-    }
+       $this->assertDatabaseMissing('recipes', $recipe->toArray());
+       $request->assertSeeText("Recipe has been deleted!");
+       $request->assertStatus(200);
+   }
 }
