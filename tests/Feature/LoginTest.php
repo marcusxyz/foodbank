@@ -24,7 +24,7 @@ class LoginTest extends TestCase
         $user = new User();
         $user->name = 'Marcus';
         $user->email = 'example@yrgo.se';
-        $user->password = Hash::make('123');
+        $user->password = Hash::make('1234567');
         $user->save();
 
         // How it should response
@@ -32,14 +32,52 @@ class LoginTest extends TestCase
             ->followingRedirects()
             ->post('login', [
                 'email' => 'example@yrgo.se',
-                'password' => '123',
+                'password' => '1234567',
         ]);
-        // What the response should see in dashboard
+        // What the response should see in index
         $response->assertOk();
         $response->assertSeeText('Welcome to recipe bank, Marcus!');
     }
 
-    public function test_user_can_not_login_without_password() {
+    public function test_user_types_invalid_email()
+    {
+        $user = new User();
+        $user->name = 'Marcus';
+        $user->email = 'example@yrgo.se';
+        $user->password = Hash::make('1234567');
+        $user->save();
+
+        $response = $this
+            ->post('login', [
+                'email' => 'example@yr',
+                'password' => '1234567'
+        ]);
+
+        $response->assertStatus(302);
+        $response->assertSessionHasErrors([
+            'email' => 'The email must be a valid email address.'
+        ]);
+    }
+
+    public function test_user_types_wrong_credientials()
+    {
+        $user = new User();
+        $user->name = 'Marcus';
+        $user->email = 'example@yrgo.se';
+        $user->password = Hash::make('1234567');
+        $user->save();
+
+        $response = $this
+            ->post('login', [
+                'email' => 'example@yrgo.se',
+                'password' => '7654321'
+        ]);
+
+        $response->assertStatus(302);
+    }
+
+    public function test_user_can_not_login_without_password()
+    {
 
         $user = new User();
         $user->name = 'Guybrush';
@@ -58,24 +96,8 @@ class LoginTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_user_shall_not_see_register_page() {
-
-        $user = new User();
-        $user->name = 'Guybrush';
-        $user->email = 'example@yrgo.se';
-        $user->password = Hash::make('123');
-        $user->save();
-
-        $response = $this
-            ->actingAs($user)
-            ->followingRedirects()
-            ->get('register');
-
-        $response->assertOk();
-        $response->assertSeeText('Welcome to recipe bank, Guybrush!');
-    }
-
-    public function test_user_shall_not_see_login_page() {
+    public function test_existing_user_shall_not_see_login_page()
+    {
 
         $user = new User();
         $user->name = 'Guybrush';

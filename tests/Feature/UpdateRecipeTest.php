@@ -39,17 +39,14 @@ class UpdateRecipeTest extends TestCase
 
     public function test_update_recipe()
     {
-        // Create new user manually
         $user = new User();
         $user->name = 'Mr Robot';
         $user->email = 'example@yrgo.se';
         $user->password = Hash::make('123');
         $user->save();
 
-        // Generate dummy data for recipe
         $recipe = Recipe::factory()->create();
 
-        // Manually update recipe
         $attributes = [
             'title' => 'mos',
             'description' => 'mos',

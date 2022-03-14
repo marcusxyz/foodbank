@@ -1,5 +1,5 @@
 @include('errors')
-<p>Back to <a href="{{ route('user.profile') }}">Profile</a></p>
+<p>Back to <a href="{{ url()->previous() }}">Profile</a></p>
 <h1>Update recipe</h1>
 
 <form action="{{ route('recipes.patch', $recipes) }}" method="POST">
