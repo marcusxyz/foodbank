@@ -1,4 +1,6 @@
-<a href="{{ url()->previous() }}">Go back</a></p>
+
+<p><a href="{{ url()->previous() }}">Go back</a></p>
+
 <h1>{{$recipes->title}}</h1>
 
 <h3>Description</h3>

@@ -1,5 +1,5 @@
 @if ($errors->any())
-<p>
+<p style="color: red">
     <u>{{ $errors->first() }}</u>
 </p>
 @endif
