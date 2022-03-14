@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
-class RecipeTest extends TestCase
+class DeleteRecipeTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -21,10 +21,12 @@ class RecipeTest extends TestCase
         $user->password = Hash::make('123');
         $user->save();
 
+        $recipe = Recipe::factory()->create();
+
         $this
             ->actingAs($user)
             ->delete("recipes/1");
 
-        $this->assertDatabaseMissing('recipes', ['id' => 1]);
+        $this->assertDatabaseMissing('recipes', $recipe->toArray());
     }
 }
