@@ -22,6 +22,13 @@ class UpdateRecipeController extends Controller
         $recipe->ingredients = $request->input('ingredients');
         $recipe->recipe_steps = $request->input('recipe_steps');
 
+        $this->validate($request, [
+            'title' => 'required|string',
+            'description' => 'required|string',
+            'ingredients' => 'required|string',
+            'recipe_steps' => 'required|string',
+        ]);
+
         $recipe->update();
 
         return redirect('user/profile')->with('success', 'Recipe has been updated!');
