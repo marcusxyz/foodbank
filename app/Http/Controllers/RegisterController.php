@@ -32,6 +32,6 @@ class RegisterController extends Controller
         $register->password = Hash::make($request->input('password'));
         $register->save();
 
-        return redirect('/')->with('success', 'You are now registrated, please log in!');
+        return redirect('/')->with('success', "You're all set, please log in!");
     }
 }
